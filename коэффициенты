@@ -1,0 +1,54 @@
+
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+#include<iostream>
+
+using namespace std;
+
+#define e 0.01
+#define n1 100
+#define eps 0.001
+#define h 0.01
+double func(int i){
+	int n = 4;
+	double X;
+	return X = i/n;}
+
+double Func(double p, double q, double x){
+	double RESULT = p/q;
+	return RESULT;
+}
+
+int main(){
+	int a, n;
+	double x, Result, b, res;
+	a = 0;
+	b = 1;
+	double counter = a;
+	double q, p;
+	n = 4;
+	for(int j = 0; j <= n; j++){
+		func(j);
+		for(int i = 0; i <= n; i++){
+			if (j!=i){
+				q *= (x - func(i));
+				p *= (func(j) - func(i));}}}
+		Result = q/p;
+		
+		while((b - counter) > eps)
+    {
+      
+		res += Func(q, p, counter);
+        counter += h;
+    }
+	double Res = h * res;
+	printf("result = ");
+	printf("%.4lf\n", Res);	
+
+	
+
+system("pause");
+return 0;
+}
+	
