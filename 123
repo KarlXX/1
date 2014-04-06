@@ -1,0 +1,49 @@
+
+
+#include<iostream>
+#include<math.h>
+
+using namespace std;
+
+double *h = new double [2];
+double *b = new double [2];
+
+double hi(double xi, double xj, int i){
+	
+	return h[i] = xj - xi;
+}
+double bi(double y1, double y2, double y3, int i){
+	return b[i] = 3.*((y3 - y2)/(h[i+1]) - (y2 - y1)/h[i]);
+}
+
+int main(){
+	double *x = new double [3];
+	double *y = new double [3];
+	double *C = new double [3];
+	
+	x[0] = -1;
+	x[1] = 0;
+	x[2] = 1;
+	x[3] = 2;
+	y[0] = 1./2;
+	y[1] = 1;
+	y[2] = 2;
+	y[3] = 4;
+	C[0] = 0;
+	C[3] = 0;
+	C[1] = 0;
+	C[2] = 0;
+	for(int i = 1; i <= 3; i++){
+		hi(x[i-1], x[i], i);
+	}
+	for(int i = 1; i <= 2; i++){
+		bi(y[i-1], y[i], y[i+1], i);
+	}
+	//cout<<h[3];
+	C[2] = (b[2] - b[1]*(h[2]/(2.*(h[2] + h[1]))))/(-1*(h[2]*h[2]/(2*(h[2] + h[1]))) + 2.*(h[3] + h[2]));
+	C[1] = (b[2] - 2*(h[3] + h[2])*C[2])/(h[2]);
+	printf("%f\n", C[1]);
+	printf("%f\n", C[2]);
+system("pause");
+return 0;
+}
