@@ -1,0 +1,314 @@
+/*#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+#define rows 4
+#define columns 4
+
+double metrica( double x, double y){
+	return abs(x - y);}
+
+int main(){
+	int N = 3, sum = 0, alfa, res = 0;
+	
+	int matrix [rows][columns];
+	for(int row = 0; row < rows; row++){
+        for(int column = 0; column < columns; column++){
+           
+			scanf_s("%f", &alfa);
+			sum += matrix[rows][alfa];
+			
+            cout << matrix[row][alfa];
+        }
+        cout << endl;
+    }
+     system("pause");
+	 return 0;
+}
+
+
+
+/*double func(double x){
+	return x*x;}
+
+int main(){
+	/*bool work;
+	double x0, x1;
+	x0 = 0.739;
+	while(work = true){
+		x1 = x0 - (x0 - cos(x0))/1.5;
+	if (abs(x0 - x1)<eps){
+		work = false;}
+	else x0 = x1;}
+
+	printf("%f", x1);
+	printf("123");
+	system("pause");
+	return 0;*/
+/*
+	double c, x;
+	x = 1;
+	c = (func(x+eps)-func(x))/eps;
+	printf("%.5lf", c);
+	system("pause");
+	
+
+}
+*/
+/*
+#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+double func(double x)
+{
+	return (1/(1+(x*x)));
+}
+
+
+int main(){
+	int n, x0, a, b;
+	double epsilon,h;
+	cout<<"VVedite nachalo"<<endl;
+	cin>>a;
+	cout<<"VVedite konec"<<endl;
+	cin>>b;
+	cout<<"VVedite chislo razbieniy"<<endl;
+	cin>>n;
+	x0 = a;
+	h = (b-a)/n;
+	cout<<"VVedite pogreshnost'"<<endl;
+	cin>>epsilon;
+	double SUM = 0;
+	double sum = 0;
+	double A; 
+	for (int i = 0; i < n; i++){
+		
+		sum += func(a + h/2);
+		a += h;
+		SUM = h * sum;
+		printf("%.3f\n", sum);
+		//printf("%d", A);
+	}
+	
+	system("pause");
+	return 0;
+}*/
+
+
+//метод рунге-кутта
+/*
+#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+
+double func(double x, double y)
+{
+	return x*x + y*y;
+}
+
+int main(){
+
+	
+double fx[3], x[3];	
+double start, finish, x0, y0, y, xn, h, k0, k1, k2, k3, y1;
+ x0 = 1;
+ y0 = 1;
+ xn = 1.2;
+ y = 0;
+int n = 10000;
+h = (xn - x0)/ n;
+
+for (int i = 0; i <=3; i++){
+	k0 = func(x0, y0);
+	k1 = func(x0+ h/2, y0 + k0 * h/2);
+	k2 = func(x0+ h/2, y0 + k1 * h/2);
+	k3 = func(x0 + h, y0 + h*k2);
+	
+	
+	//printf("%.3f", k0);
+	fx[i] = k0;
+	x[i] = x0;
+	y1 = y0 + (h/6)*(k0 + 2*k1 + 2*k2 + k3);
+	x0 += h;
+	y0 = y1;
+	//printf("%.3f\n", y0);
+	}
+
+for(int i = 4; i <= n; i++){
+	 y1 = y0 + h/24*(55 * fx[3] - 59 * fx[2] + 37 * fx[1] - 9 * fx[0]);
+	 fx[0] = fx[1];
+	 fx[1] = fx[2];
+	 fx[2] = fx[3];
+	 k0 = func(x0, y1);
+	 fx[3] = k0;
+	 y0 = y1;
+	x0 += h;
+	 
+	 }
+printf("%.5f", y1);
+system("pause");
+return 0;
+}*/
+/*
+
+#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+
+double func(double x, double y)
+{
+	return x*x + y*y;
+}
+
+int main(){
+
+	
+double fx[3], x[3];	
+double start, finish, x0, y0, y, xn, h, k0, k1, k2, k3, y1, y2 = 0, y3 = 1;
+ x0 = 1;
+ y0 = 1;
+ xn = 1.2;
+ y = 0;
+
+int n = 100000;
+h = (xn - x0)/ n;
+
+for (int i = 0; i <=3; i++){
+	k0 = func(x0, y0);
+	k1 = func(x0+ h/2., y0 + k0 * h/2.);
+	k2 = func(x0+ h/2., y0 + k1 * h/2.);
+	k3 = func(x0 + h, y0 + h*k2);
+	
+	
+	//printf("%.3f", k0);
+	fx[i] = k0;
+	x[i] = x0;
+	y1 = y0 + (h/6.*(k0 + 2*k1 + 2*k2 + k3));
+	x0 += h;
+	y0 = y1;
+	//printf("%.3f\n", y0);
+	}
+
+for(int i = 4; i <= n; i++){
+	 y1 = y0 + h/24.*(55 * fx[3] - 59 * fx[2] + 37 * fx[1] - 9 * fx[0]);
+	 fx[0] = fx[1];
+	 fx[1] = fx[2];
+	 fx[2] = fx[3];
+	 
+	 k0 = func(x0, y1);
+	 fx[3] = k0;
+	 //y0 = y1;
+	 //fx[4] = y1;
+	 
+	 y0 = y0 + (9. * fx[3] + 19* fx[2] + (-5) * fx[1] + fx[0]) * h/24.;
+	 
+	 k0 = func(x0, y0);
+	 fx[3] = k0;
+	 x0 += h; 
+	 
+	//y0 = y0 + (9 * fx[3] + 19* fx[2] + (-5) * fx[1] + fx[0]) * h/24.;
+	  
+	 
+	 }
+
+
+printf("%.5f\n", y0);
+system("pause");
+return 0;
+}
+
+*/
+
+
+
+/*#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+double func(double x, double y, double z)
+{
+	return 2 * x + 2 * y + 2 * z;
+}
+
+int main(){
+	int n = 10;
+	double x0, y0, z0, x1, y1, z1, x2, y2, z2, eps = 0.0001;
+	x0 = 0;
+	y0 = 0;
+	z0 = 0;
+
+	double k = 0.5;
+	for(int i = 0; i < n; i++){
+	
+	x2 = x0 - k * func(x0,0,0);
+	y2 = y0 - k * func(0,y0,0);
+	z2 = z0 - k * func(0,0,z0);
+	x0 = x2;
+	y0 = y2;
+	z0 = z2;
+	
+	}
+printf("%.5f\n", x2);
+printf("%.5f\n", y2);
+printf("%.5f\n", z2);
+system("pause");
+return 0;
+}*/
+
+
+#include<stdio.h>
+#include<math.h>
+#include<cstdlib>
+#include<iostream>
+using namespace std;
+
+double func(double x, double y, double z)
+{
+	return x*x + (y - 8)*(y-8) + (z + 3)*(z + 3)*(z + 3);
+}
+
+int main(){
+	double eps = 0.000001;
+	double h = 0.01;
+	double Xst = 0.1, Xc = 8, Xl = 0, Xr = -3;
+	double Yc, Yr, Yl, Xmin;
+	Xc = Xst;
+	
+	Xl = Xc - h;
+	Xr = Xr + h;
+	Yc = func(Xc, 0, 0);
+	Yr = func(0, 0, Xr);
+	Yl = func(0, Xl, 0);
+	
+	Xmin = (Yl*(Xr + Xc) - 2*Yc*(Xr + Xl) + Yr*(Xc+ Xl))/(2*(Yl - 2*Yc + Yr));
+	//cout<<abs(Xmin - Xc);
+	//while(abs(Xmin - Xc)> eps){
+	if (abs(Xmin - Xc) > eps){
+		for(int i = 1; i < 2; i++){
+		Yc = func(Xc, 0, 0);
+		Yr = func(0, 0, Xr);
+		Yl = func(0, Xl, 0);
+		Xl = Xc - h;
+		Xr = Xr + h;
+		Xmin = (Yl*(Xr + Xc) - 2*Yc*(Xr + Xl) + Yr*(Xc+ Xl))/(2*(Yl - 2*Yc + Yr));
+		Xc = Xmin;
+	//printf("%f\n", Xl);
+	//printf("%f\n", Xr);
+		printf("%f\n", Xmin);}}
+	//printf("%f\n", Xmin);
+	system("pause");
+	return 0;
+}
