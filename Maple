@@ -2,15 +2,13 @@
 > f := -x;
 > phi := proc (n, x) if n = 0 then 0 else x^n*(1-x) end if end proc;
 > 
-> 
-> 
-> 
-> Galerkin:=proc(L::procedure,f::algebraic,phi::procedure,x::name,a::numeric,b::numeric,n::numeric) 
-local y,i,eq,A; y:=phi(0,x) + sum(A[i]*phi(i,x),i=1..n); 
-for i to n do eql|i:=sum(A[k]*int(L(phi(k,x),x)*phi(i,x),x=a..b); end do; 
-eq:=solve({seq(eql|i,i=1..n)},{seq(A[i],i = 1..n)}); 
-assign(eq);
-simplify(eval(y)); 
+Galerkin:=proc(L::procedure,f::algebraic,phi::procedure,x::name,a::numeric,b::numeric,n::numeric)   
+local y,i,eq,A;   y:=phi(0,x)+sum(A[i]*phi(i,x),i=1..n);   
+for i to n do eql:=sum(A[k]*int(L(phi(k,x),x)*phi(i,x),x=a..b),k=1..n)=int((f-L(phi(0,x),x)*phi(i,x),x=a..b);   
+end do;   
+eq:=solve({seq(eql,i=1..n)},{seq(A[i],i = 1..n)});  
+assign(eq);  
+simplify(eval(y));  
 end proc:
 
 
